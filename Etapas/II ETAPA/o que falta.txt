@@ -1,0 +1,2 @@
+-testes errados
+-interface do usuario que eu vou fazer ainda.

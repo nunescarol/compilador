@@ -1,0 +1,36 @@
+<token> ::= <id> | <int-lit> | <float-lit> | <op-ad> | <op-mul> | <op-rel> | := | , | : | [ | ] | ( | ) | ; | eot 
+
+<id> ::= 
+	<letra>  
+	| <id> <letra> 
+	| <id> <digito>
+
+<int-lit> ::=
+	<digito> 
+	| <int-lit> <digito>
+
+<float-lit> ::= 
+	<int-lit> . <int-lit> 
+	| <int-lit> . 
+	| . <int-lit>
+
+<op-ad> ::= 
+	+ 
+	| - 
+	| or
+	
+<op-mul> ::=
+ 	| * 
+	| / 
+	| and
+	
+	
+<op-rel> ::=
+	| < 
+	| > 
+	| <= 
+	| >= 
+	| = 
+	| <>
+
+<separator> ::= ! Graphic* eol | space | eol

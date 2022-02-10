@@ -1,0 +1,22 @@
+ Verificar se a gramática da linguagem é LL(1). Justificar a sua resposta:
+
+A gramática não é LL1, pois nela contém regras com recursão à esquerda. Um exemplo disso é a regra:
+
+<declarações> ::= 
+	<declaração> ; 
+	| <declarações> <declaração> ; 
+	| <vazio>
+	
+ Obter uma gramática equivalente que seja LL(1) e .
+ Demonstrar, através do cálculo dos conjuntos first e follow, que a nova gramática é
+LL(1).
+
+gramáticasintatica.txt
+
+ Obter, a partir da nova gramática uma gramática sintática para a linguagem.
+
+gramáticasintatica.txt sem as regras de produção dos tokens eu acho.
+
+
+
+

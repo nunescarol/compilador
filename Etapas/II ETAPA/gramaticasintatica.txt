@@ -1,0 +1,63 @@
+﻿
+<atribuição> ::= <variável> := <expressão> 
+
+<bool-lit> ::= TOKEN
+
+<comando> ::= 	<atribuição> | <condicional> | <iterativo> 	| <comando-composto>
+	
+<comando-composto> ::= 	begin <lista-de-comandos> end
+	
+<condicional> ::= if <expressão> then <comando> ( else <comando> | <vazio> )
+	
+<corpo> ::= <declarações> <comando-composto>
+	
+<declaração> ::=  <declaração-de-variável>
+	
+<declaração-de-variável> ::= var <lista-de-ids> : <tipo>
+	
+<declarações> ::= (<declaração>;)*
+
+<expressão> ::= <expressão-simples> (<op-rel> <expressão-simples>)*
+	
+<expressão-simples> ::= <termo>(<op-ad> <termo>)*
+	
+<fator> ::= <variável> | <literal> 	| "(" <expressão> ")" 
+
+<float-lit> ::= TOKEN
+
+<id> ::= TOKEN
+
+<int-lit> ::= TOKEN
+
+<iterativo> ::= while <expressão> do <comando>
+
+<lista-de-comandos> ::= (<comando>;)*
+
+<lista-de-ids> ::= <id>(,<id>)*
+	
+<literal> ::= <bool-lit> | <int-lit> | <float-lit> 
+
+<op-ad> ::= TOKEN
+
+<op-mul> ::= TOKEN
+
+<op-rel> ::= TOKEN
+
+<programa> ::= 	program <id> ; <corpo> .
+	
+<seletor> ::= ("[" <expressão> "]")*
+
+<termo> ::= <fator> (<op-mul> <fator>)*
+
+<tipo> ::= <tipo-agregado> | <tipo-simples>
+	
+<tipo-agregado> ::= array [ <literal> .. <literal> ] of <tipo>
+	
+<tipo-simples> ::= integer | real | boolean
+	
+<variável> ::= <id> <seletor>
+
+<vazio> ::=
+
+IMPLICITOS: LETRA E DIGITO E OUTROS (??)
+

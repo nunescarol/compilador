@@ -1,0 +1,4 @@
+program programa1 ;
+var teste  : boolean  ;  
+begin teste :=  true    ;  
+end .

@@ -1,0 +1,3 @@
+token ::= <letra> (<letra>|<digito>)* | <digito> <digito>* | + | - | or | * | / | and | <(=|>|<vazio>) | > ( = | <vazio>) |  =  | := | , | : | [ | ] | ( | ) | ; | .. | eot | (<digito> <digito>* . (<digito> <digito>*)* |  . <digito> <digito>*)
+
+separator = ! Graphic* eol | space | eol

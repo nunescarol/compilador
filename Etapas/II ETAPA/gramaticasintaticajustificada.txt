@@ -1,0 +1,121 @@
+first_1()
+
+<atribuição> ::= <variável> := <expressão> 
+(apenas uma regra, então é LL1)
+	
+<bool-lit> ::= TOKEN
+
+<comando> ::= 	<atribuição> | <condicional> | <iterativo> 	| <comando-composto>
+first_1(<atribuição>) = first_1(<variável>) = {<id>}
+first_1(<condicional>) = {if}
+first_1(<iterativo>) = {while}
+first_1(<comando-composto>) = {begin}
+TODOS CONJUNTOS DISJUNTOS, então LL1
+	
+<comando-composto> ::= 	begin <lista-de-comandos> end
+(apenas uma regra, então é LL1)
+	
+<condicional> ::= 	if <expressão> then <comando> ( else <comando> | <vazio> )
+(apenas uma regra, então é LL1)
+	
+<corpo> ::= <declarações> <comando-composto>
+(apenas uma regra, então é LL1)
+	
+<declaração> ::=  <declaração-de-variável>
+(apenas uma regra, então é LL1) 
+	
+<declaração-de-variável> ::= var <lista-de-ids> : <tipo>
+(apenas uma regra, então é LL1)
+	
+<declarações> ::= 	<declaração> ; | <declarações> <declaração> ; | <vazio>
+<declarações> ::= (<declaração>;)*
+<declarações>:
+first_1(<declaração>)= first_1(<declaração-de-variável>)= {var}
+follow_1(<declarações>) = {begin}
+PORTANTO:
+<declarações> ::= (<declaração>;)* é LL1
+
+<expressão> ::= <expressão-simples> | <expressão-simples> <op-rel> <expressão-simples>
+<expressão> ::= <expressão-simples> (<op-rel> <expressão-simples>)*
+(apenas uma regra, então é LL1)
+	
+<expressão-simples> ::= <expressão-simples> <op-ad> <termo> | <termo>
+<expressão-simples> ::= <termo>(<op-ad> <termo>)*
+(apenas uma regra, então é LL1)
+	
+<fator> ::= <variável> | <literal> 	| "(" <expressão> ")" 
+first_1(<variável>) = {<id>}
+first_1(<literal> ) = {<bool-lit>, <int-lit>, <float-lit>}
+first_1("(" <expressão> ")" ) = {(}
+TODOS CONJUNTOS DISJUNTOS, então LL1
+	
+<float-lit> ::= TOKEN
+
+<id> ::= TOKEN
+
+<int-lit> ::= TOKEN
+
+<iterativo> ::= while <expressão> do <comando>
+(apenas uma regra, então é LL1)
+
+<lista-de-comandos> ::= <comando> ; | <lista-de-comandos> <comando> ; <vazio>
+<lista-de-comandos> ::= (<comando> ;)*
+first_1(<comando>) = {<id>, if, while, begin}
+follow_1(<lista-de-comandos>) = {end}
+TODOS CONJUNTOS DISJUNTOS, então LL1
+	
+<lista-de-ids> ::= 	<id> | <lista-de-ids> , <id> 
+<lista-de-ids> ::= <id>(,<id> )*
+first_1(<id>(,<id> )*) = {<id>}
+follow_1(<lista-de-ids>) = {:}
+TODOS CONJUNTOS DISJUNTOS, então LL1
+	
+<literal> ::= <bool-lit> | <int-lit> | <float-lit> 
+first_1(<bool-lit>) = {<bool-lit>}
+first_1(<int-lit>) = {<int-lit>}
+first_1(<float-lit>) = {<float-lit>}
+TODOS CONJUNTOS DISJUNTOS, então LL1
+	
+<op-ad> ::= TOKEN
+
+<op-mul> ::= TOKEN
+
+<op-rel> ::= TOKEN
+
+<programa> ::= 	program <id> ; <corpo> .
+(apenas uma regra, então é LL1)
+	
+<seletor> ::= 	<seletor> "[" <expressão> "]"| "[" <expressão> "]" 	|<vazio>
+<seletor> ::= ("[" <expressão> "]")*
+first_1("[" <expressão> "]") = {"["}
+follow_1(<seletor>) = {EOF}
+TODOS CONJUNTOS DISJUNTOS, então LL1
+	 
+<termo> ::= <termo> <op-mul> <fator>| <fator>
+<termo> ::= <fator> (<op-mul> <fator>)*
+(apenas uma regra, então é LL1)
+	
+<tipo> ::= 	<tipo-agregado> | <tipo-simples>
+first_1(<tipo-agregado>) = {array}
+first_1 (<tipo-simples>) = {integer, real, boolean}
+TODOS CONJUNTOS DISJUNTOS, então LL1
+	
+<tipo-agregado> ::= array [ <literal> .. <literal> ] of <tipo>
+(apenas uma regra, então é LL1)
+	
+<tipo-simples> ::= 	integer | real 	| boolean
+first_1(integer) = {integer}
+first_1(real) = {real}
+first_1(boolean) = {boolean}
+TODOS CONJUNTOS DISJUNTOS, então LL1
+	
+<variável> ::= <id> <seletor>
+(apenas uma regra, então é LL1)
+	
+<vazio> ::=
+
+
+IMPLICITOS: LETRA E DIGITO E OUTROS (??)
+
+Simplificando cada regra por meio de fatoração à esquerda, substituições e eliminação de recursão à esquerda (a medida que achamos necessário):
+

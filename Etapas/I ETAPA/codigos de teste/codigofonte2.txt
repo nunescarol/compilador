@@ -1,0 +1,9 @@
+program programa2 ; 
+var inteiro1 , inteiro2 : integer  ; 
+var float1 , float2  , float3  : real  ;  
+begin inteiro1 := 3   ; 
+inteiro2 := inteiro1 + 2   ; 
+ float1 :=  1. ;  
+float2 := .2  ;  
+float3 := float1 + float2 ;  
+end . 
